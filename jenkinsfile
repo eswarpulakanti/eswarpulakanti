@@ -9,7 +9,8 @@ node {
      withSonarQubeEnv('My SonarQube Server', envOnly: true) {
   // This expands the evironment variables sonar,http://127.0.0.1:9000, sqa_e33d87950196351028342b65856e16a934c532d3.
   println ${http://127.0.0.1:9000} 
-        }
+      
+      }
      } 
    }
 }
