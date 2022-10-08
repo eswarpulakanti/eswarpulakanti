@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone sources') {
             steps {
-                git url: 'https://github.com/eswarpulakanti/eswarpulakanti/jenkinsfile'
+                git branch: 'bad-code', url: 'https://github.com/eswarpulakanti/eswarpulakanti/edit/main/jenkinsfile'
             }
         }
 
