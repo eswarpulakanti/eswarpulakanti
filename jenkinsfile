@@ -7,8 +7,8 @@ node {
     withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
       sh "${scannerHome}/bin/sonar-scanner"
      withSonarQubeEnv('My SonarQube Server', envOnly: true) {
-  // This expands the evironment variables SONAR_CONFIG_NAME, SONAR_HOST_URL, SONAR_AUTH_TOKEN that can be used by any script.
-  println ${env.SONAR_HOST_URL} 
+  // This expands the evironment variables sonar,http://127.0.0.1:9000, sqa_e33d87950196351028342b65856e16a934c532d3.
+  println ${http://127.0.0.1:9000} 
 } 
     }
   }
