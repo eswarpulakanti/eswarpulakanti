@@ -1,24 +1,4 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Clone sources') {
-            steps {
-                git branch: 'bad-code', url: 'https://github.com/eswarpulakanti/eswarpulakanti/edit/main/jenkinsfile'
-            }
-        }
-
-        stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh "./gradlew sonarqube"
-                }
-            }
-        }
-        stage("Quality gate") {
-            steps {
-                waitForQualityGate abortPipeline: true
-            }
-        }
-    }
-}
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=sonar \
+  -Dsonar.host.url=http://127.0.0.1:9000 \
+  -Dsonar.login=sqa_e33d87950196351028342b65856e16a934c532d3
