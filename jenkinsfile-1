@@ -1,15 +1,4 @@
-pipeline {
-  agent {lable 'linux' }
-  options {
-  buildDiscarder{logRotator{numTokeepStr: '5'}}
-}
-stages {
-stage('scan') { 
-  steps {
-    withSonarQubeEnv(installationName: 'sql' ) {
-      sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2125'
-                  }
-               }
-            }
-        }
-     }
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=my-first-project \
+  -Dsonar.host.url=http://127.0.0.1:9000 \
+  -Dsonar.login=sqp_0b479172ca203244fce9cb4fb13ace3f76cf6f9e
