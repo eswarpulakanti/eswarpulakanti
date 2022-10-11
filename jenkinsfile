@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                git url: 'https://github.com/eswarpulakanti/eswarpulakanti/edit/main/jenkinsfile.git'
+                git url: 'https://github.com/eswarpulakanti/eswarpulakanti/jenkinsfile.git'
             }
         }
         stage('build && SonarQube analysis') {
