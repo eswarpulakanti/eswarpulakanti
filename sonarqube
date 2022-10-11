@@ -6,7 +6,7 @@ pipeline{
     stages{
        stage('GetCode'){
             steps{
-                git 'https://github.com/eswarpulakanti/eswarpulakanti/edit/main/sonarqube'
+                git 'https://github.com/eswarpulakanti/eswarpulakanti/edit/main/sonarqube.git'
             }
          }        
        stage('Build'){
