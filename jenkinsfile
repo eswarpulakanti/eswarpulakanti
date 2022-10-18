@@ -1,15 +1,19 @@
- pipeline {
-     agent {lable 'linux }
-     options {
-       buildDiscarder(logRotator(numToKeepStr: '5'))
-     }
-     stages {
-       stage('scan') {
-         steps {
-           withSonarQubeEnv(installationName: sq1) {
-             sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.8.6:sonar'
+pipeline {
+agent {
+node {
+label ‘master’
+   }
+}
+stages {
+stage(‘Continuous Integration’) {
+steps {
+withMaven(jdk: ‘JAVA_HOME’, maven: ‘MAVEN_HOME’) {
+bat ‘mvn clean’
+bat(script: ‘mvn test cobertura:cobertura install’, label: ‘Unit Testing and Code Coverage’)
+cobertura(autoUpdateHealth: true, autoUpdateStability: true, classCoverageTargets: ‘target/site/cobertura/’, coberturaReportFile: ‘target/site/cobertura/*.xml’, failUnstable: true, zoomCoverageChart: true)
             }
          }
       }
    }
-}
+} 
+       
