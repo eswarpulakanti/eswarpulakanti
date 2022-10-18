@@ -6,7 +6,7 @@ pipeline{
     stages{
        stage('GetCode'){
             steps{
-                git 'https://github.com/eswarpulakanti/eswarpulakanti/edit/main/sonarqube'
+                git 'https://github.com/eswarpulakanti/eswarpulakanti.git'
             }
          }        
        stage('Build'){
@@ -15,7 +15,7 @@ pipeline{
             }
          }
         stage('SonarQube analysis') {
-//    def scannerHome = tool 'SonarScanner 8.9';
+//    def scannerHome = tool 'SonarScanner 9.6';
         steps{
         withSonarQubeEnv('sonarqube-8.9') { 
         // If you have configured more than one global server connection, you can specify its name
