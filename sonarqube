@@ -1,12 +1,12 @@
 pipeline{
     agent any
     environment {
-        PATH = "$PATH:/opt/apache-maven-3.8.6/bin"
+        PATH = "$PATH:/user/apache-maven-3.6.3/bin"
     }
     stages{
        stage('GetCode'){
             steps{
-                git 'https://github.com/eswarpulakanti/eswarpulakanti/edit/main/sonarqube'
+                git 'https://github.com/eswarpulakanti/eswarpulakanti/master/sonarqube'
             }
          }        
        stage('Build'){
@@ -15,15 +15,15 @@ pipeline{
             }
          }
         stage('SonarQube analysis') {
-//    def scannerHome = tool 'SonarScanner 8.9';
+//    def scannerHome = tool 'SonarScanner 8.9.9';
         steps{
-        withSonarQubeEnv('sonarqube-8.9') { 
+        withSonarQubeEnv('sonarqube-8.9.9') { 
         // If you have configured more than one global server connection, you can specify its name
 //      sh "${scannerHome}/bin/sonar-scanner"
         sh "mvn sonar:sonar"
+                 }
             }
-        }
-     }
+         }
        
-    }
-}
+      }
+   }
